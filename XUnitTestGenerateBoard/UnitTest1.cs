@@ -36,6 +36,8 @@ namespace XUnitTestGenerateBoard
 
             Assert.True(sudoku.Squares[0].X == 0 && sudoku.Squares[0].Y == 0 && sudoku.Squares[0].Value == 4 );
             Assert.True(sudoku.Squares[80].X == 8 && sudoku.Squares[80].Y == 8 && sudoku.Squares[80].Value == 9);
+            Assert.True(sudoku.Squares[69].X == 6 && sudoku.Squares[69].Y == 7 && sudoku.Squares[69].Value == 3);
+            Assert.True(sudoku.Squares[31].X == 4 && sudoku.squares[31].y == 3 && sudoku.squares[31].value == 9);
             Assert.Equal(81, sudoku.squares.Length);
             Assert.True(sudoku.Squares.Length == 81);
         }

@@ -58,29 +58,29 @@ namespace GenerateSudoku
             int maxsize = sudoku.size * sudoku.size;
             List<Square> board = new List<Square>();
             int boardLength = board.Count;
-            bool exsist = false;
             int x = 0;
             int y = 0;
+
+            int numberofbasesquares = sudoku.squares.Length;
+            int numberchecksquare = 0;
+            //De gegevens die je hebt gekregen opvolorden zetten
+            board = sudoku.squares.OrderBy(s => s.y).ThenBy(s => s.x).ToList();
             while(boardLength < maxsize)
             {
-                exsist = false;
-                if (sudoku.squares != null)
+                if (numberchecksquare < numberofbasesquares)
                 {
-                    foreach (Square square in sudoku.squares)
+                    if (board[numberchecksquare].x == x && board[numberchecksquare].y == y)
                     {
-                        if (x == square.x && y == square.y)
-                        {
-                            square.id = createid(x, y);
-                            board.Add(square);
-                            exsist = true;
-                            break;
-                        }
+                        numberchecksquare++;
+                    }
+                    else
+                    {  
+                        AddNewSquare(board, x, y);
                     }
                 }
-
-                if(!exsist)
+                else
                 {
-                    board.Add(new Square { x = x, y = y, id = createid(x, y) });
+                    AddNewSquare(board, x, y);
                 }
 
                 x++;
@@ -93,8 +93,12 @@ namespace GenerateSudoku
                 }
 
             }
-            board.OrderBy(s => s.x).ThenBy(s => s.y);
-            return board.ToArray(); ;
+            return board.OrderBy(s => s.y).ThenBy(s => s.x).ToArray(); ;
+        }
+
+        private void AddNewSquare(List<Square> board, int x, int y)
+        {
+            board.Add(new Square { x = x, y = y, id = createid(x, y) });
         }
 
         private int createid(int x, int y)
