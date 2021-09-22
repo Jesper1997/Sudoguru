@@ -71,14 +71,7 @@ namespace GenerateSudoku
                         if (x == square.x && y == square.y)
                         {
                             square.id = createid(x, y);
-                            if (boardLength == 0)
-                            {
-                                board.Add(square);
-                            }
-                            else
-                            {
-                                board.Add( square);
-                            }
+                            board.Add(square);
                             exsist = true;
                             break;
                         }
@@ -87,15 +80,7 @@ namespace GenerateSudoku
 
                 if(!exsist)
                 {
-                    if (boardLength == 0)
-                    {
-                        board.Add(new Square { x = x, y = y, id = createid(x, y) });
-                    }
-                    else
-                    {
-                        board.Add(new Square { x = x, y = y, id = createid(x, y) });
-                    }
-
+                    board.Add(new Square { x = x, y = y, id = createid(x, y) });
                 }
 
                 x++;

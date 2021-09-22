@@ -14,7 +14,6 @@ namespace GenerateSudoku
 
         public bool response { get; set; }
         public int size { get; set; }
-        //[JsonIgnore]
         public Square[] squares { get; set; }
     }
 }
