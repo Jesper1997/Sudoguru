@@ -1,9 +1,10 @@
 ﻿using System;
-//for external api
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using IGenerateSudoku;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace GenerateSudoku
 {
@@ -16,10 +17,7 @@ namespace GenerateSudoku
             Sudoku sudokuboard = GenerateSudokuFromExternalAPI(size,level);
             if(sudokuboard != null)
             {
-                foreach (Square square in sudokuboard.Squares )
-                {
-                    square.id = Convert.ToInt32(string.Format("{0}{1}" , square.y, square.x));
-                }
+                sudokuboard.squares = CompleteBoard(sudokuboard);
                 return sudokuboard;
             }
             else
@@ -53,6 +51,55 @@ namespace GenerateSudoku
             {
                 return null;
             }
+        }
+
+        public Square[] CompleteBoard(Sudoku sudoku)
+        {   
+            int maxsize = sudoku.size * sudoku.size;
+            List<Square> board = new List<Square>();
+            int boardLength = board.Count;
+            bool exsist = false;
+            int x = 0;
+            int y = 0;
+            while(boardLength < maxsize)
+            {
+                exsist = false;
+                if (sudoku.squares != null)
+                {
+                    foreach (Square square in sudoku.squares)
+                    {
+                        if (x == square.x && y == square.y)
+                        {
+                            square.id = createid(x, y);
+                            board.Add(square);
+                            exsist = true;
+                            break;
+                        }
+                    }
+                }
+
+                if(!exsist)
+                {
+                    board.Add(new Square { x = x, y = y, id = createid(x, y) });
+                }
+
+                x++;
+
+                boardLength = board.Count;
+                if(x == sudoku.size)
+                {
+                    y++;
+                    x = 0;
+                }
+
+            }
+            board.OrderBy(s => s.x).ThenBy(s => s.y);
+            return board.ToArray(); ;
+        }
+
+        private int createid(int x, int y)
+        {
+            return Convert.ToInt32(string.Format("{0}{1}", y, x));
         }
     }
 }

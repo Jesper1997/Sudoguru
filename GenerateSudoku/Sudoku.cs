@@ -7,14 +7,13 @@ using IGenerateSudoku;
 
 namespace GenerateSudoku
 {
-    class Sudoku : ISudoku
+    public class Sudoku : ISudoku
     {
         [JsonIgnore]
         public ISquare[] Squares => squares;
 
         public bool response { get; set; }
         public int size { get; set; }
-        //[JsonIgnore]
         public Square[] squares { get; set; }
     }
 }
