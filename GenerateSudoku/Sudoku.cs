@@ -7,7 +7,7 @@ using IGenerateSudoku;
 
 namespace GenerateSudoku
 {
-    class Sudoku : ISudoku
+    public class Sudoku : ISudoku
     {
         [JsonIgnore]
         public ISquare[] Squares => squares;
