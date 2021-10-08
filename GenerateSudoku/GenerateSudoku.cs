@@ -71,6 +71,7 @@ namespace GenerateSudoku
                 {
                     if (board[numberchecksquare].x == x && board[numberchecksquare].y == y)
                     {
+                        board[numberchecksquare].id = createid(x, y);
                         numberchecksquare++;
                     }
                     else

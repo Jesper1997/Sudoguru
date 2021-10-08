@@ -16,5 +16,6 @@ namespace GenerateSudoku
         public int x { get; set; }
         public int y { get; set; }
         public int value { get; set; }
+        public bool correct { get; set; } = true;
     }
 }
