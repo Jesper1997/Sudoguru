@@ -85,8 +85,7 @@ namespace GenerateSudoku
                 }
 
                 x++;
-
-                boardLength = board.Count;
+                boardLength++;
                 if(x == sudoku.size)
                 {
                     y++;
