@@ -4,7 +4,7 @@
 Other backend: https://github.com/Jesper1997/SudoguruMainBackend.git
 Frontend: https://github.com/Jesper1997/sudoguru_front-end.git
 ```
-##
+## Targetframework
 ```
-This project uses .net core 3.1
+Target framwork: .net core 3.1
 ```
