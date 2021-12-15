@@ -1,22 +1,25 @@
-# syntax=docker/dockerfile:1
-FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build-env
+#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
 WORKDIR /app
+EXPOSE 80
+EXPOSE 443
 
-# Copy csproj and restore as distinct layers
-COPY *.sln .
-COPY FactoryGenerateSudoku/*.csproj ./Sudoguru/FactoryGenerateSudoku/
-COPY GenerateSudoku/*.csproj ./Sudoguru/GenerateSudoku/
-COPY ILogic/*.csproj ./Sudoguru/ILogic/
-COPY ISudoku/*.csproj ./Sudoguru/ISudoku/
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
+WORKDIR /src
+COPY ["Sudoguru/Sudoguru.csproj", "Sudoguru/"]
+COPY ["ILogic/IGenerateSudoku.csproj", "ILogic/"]
+COPY ["FactoryGenerateSudoku/FactoryGenerateSudoku.csproj", "FactoryGenerateSudoku/"]
+COPY ["GenerateSudoku/GenerateSudoku.csproj", "GenerateSudoku/"]
+RUN dotnet restore "Sudoguru/Sudoguru.csproj"
+COPY . .
+WORKDIR "/src/Sudoguru"
+RUN dotnet build "Sudoguru.csproj" -c Release -o /app/build
 
-RUN dotnet restore
+FROM build AS publish
+RUN dotnet publish "Sudoguru.csproj" -c Release -o /app/publish
 
-# Copy everything else and build
-COPY . ./
-RUN dotnet publish -c Release -o out
-
-# Build runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:3.1
-WORKDIR /Sudoguru
-COPY --from=build-env /app/out .
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Sudoguru.dll"]

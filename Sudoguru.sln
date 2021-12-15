@@ -9,11 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IGenerateSudoku", "ILogic\I
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenerateSudoku", "GenerateSudoku\GenerateSudoku.csproj", "{EB7CD419-F0A2-432F-991D-B113D37FD6A5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GenerateSudokuProcces", "GenerateSudokuProcces", "{C81D9DCB-E633-4387-B429-98F4BA2AA642}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactoryGenerateSudoku", "FactoryGenerateSudoku\FactoryGenerateSudoku.csproj", "{71C6821A-DE91-4BF8-908E-967980419816}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTestGenerateBoard", "XUnitTestGenerateBoard\XUnitTestGenerateBoard.csproj", "{7FF11B92-FA1C-4BB5-8539-B79F98729758}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTestGenerateBoard", "XUnitTestGenerateBoard\XUnitTestGenerateBoard.csproj", "{7FF11B92-FA1C-4BB5-8539-B79F98729758}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,12 +42,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{A660F72D-36CB-4B3F-ABBB-45928F1AEE9C} = {C81D9DCB-E633-4387-B429-98F4BA2AA642}
-		{EB7CD419-F0A2-432F-991D-B113D37FD6A5} = {C81D9DCB-E633-4387-B429-98F4BA2AA642}
-		{71C6821A-DE91-4BF8-908E-967980419816} = {C81D9DCB-E633-4387-B429-98F4BA2AA642}
-		{7FF11B92-FA1C-4BB5-8539-B79F98729758} = {C81D9DCB-E633-4387-B429-98F4BA2AA642}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FAB171FA-DF61-4A05-8ED4-BA13AFC26185}
